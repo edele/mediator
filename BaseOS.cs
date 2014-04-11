@@ -14,10 +14,18 @@ namespace Mediator
     {
         protected List<BaseWindow> windows;
 
+        public void ScreenEdgeDetect(string msg)
+        {
+            Console.SetCursorPosition(1, 2);
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.WriteLine(msg+" граница экрана");
+        }
+
         public void RegisterObject(BaseWindow wnd)
         {
             windows.Add(wnd);
             wnd.os = this;
+            wnd.ScreenEdge += ScreenEdgeDetect;
         }
 
         public abstract void Draw();
